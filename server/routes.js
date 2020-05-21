@@ -1,7 +1,7 @@
 var controller = require('./controllers');
 var router = require('express').Router();
 
-router.get('/:productcode/reviews', controller.reviews.get);
+router.get('/reviews', controller.reviews.get);
 
 router.post('/:productcode/reviews', controller.reviews.post);
 
