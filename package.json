@@ -17,6 +17,7 @@
     "test:coverage": "jest --coverage --colors",
     "build": "babel ./client/src/ --out-dir compiled --presets @babel/preset-react --source-maps inline --watch",
     "seed": "mysql -u root -p < schema.sql",
+    "seed2": "psql -U postgres < NEWDB/schema.sql",
     "build:docker": "./docker_build.sh"
   },
   "dependencies": {
@@ -45,8 +46,12 @@
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.2",
     "eslint-config-hackreactor": "git://github.com/reactorcore/eslint-config-hackreactor",
+    "faker": "^4.1.0",
+    "fs": "0.0.1-security",
     "jest": "^25.5.4",
+    "mongoose": "^5.9.15",
     "nodemon": "^2.0.3",
+    "path": "^0.12.7",
     "sinon": "^9.0.2",
     "style-loader": "^1.2.1",
     "webpack": "^4.43.0",

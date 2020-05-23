@@ -1,22 +1,67 @@
-db.users.insertOne(
-  {
-    id: INTEGER AUTO_INCREMENT,
-    product_id: INTEGER NOT NULL,
-    user_id: INTEGER,
-    title: VARCHAR(255) NOT NULL,
-    text: MEDIUMTEXT NOT NULL,
-    rating_overall: INTEGER NOT NULL,
-    doesRecommend: BOOLEAN NOT NULL,
-    rating_size: INTEGER NOT NULL,
-    rating_width: INTEGER NOT NULL,
-    rating_comfort: INTEGER NOT NULL,
-    rating_quality: INTEGER NOT NULL,
-    isHelpful: INTEGER NOT NULL DEFAULT 0,
-    isNotHelpful: INTEGER NOT NULL DEFAULT 0,
-    created_At: DATETIME DEFAULT now(),
-    uploaded_At: DATETIME,
-    user_nickname: VARCHAR(255) NOT NULL,
-    user_verified: BOOLEAN NOT NULL DEFAULT false,
-    user_email_auth: VARCHAR(255) NOT NULL,
-  }
-)
+/* eslint-disable camelcase */
+var mongoose = require ('mongoose');
+var Schema = mongoose.Schema;
+
+var reviewSchema = Schema({
+  id: {
+    type: Number,
+    unique: true
+  },
+  title: String,
+  text: String,
+  rating_overall: Number,
+  doesRecommend: Number,
+  created_At: Date,
+  product_id: {type: Schema.Types.ObjectId, ref: 'Product'},
+  user: {type: Schema.Types.ObjectId, ref: 'User'}
+});
+var Review = mongoose.model('Review', reviewSchema);
+
+var productSchema = Schema({
+  product_id: {
+    type: Number,
+    unique: true
+  },
+  name: String,
+  description: String,
+  rating_overall: Number,
+  reviews: [{type: Schema.Types.ObjectId, ref: 'Review'}]
+});
+var Product = mongoose.model('Product', productSchema);
+
+var userSchema = Schema({
+  user_id: {
+    type: Number,
+    unique: true
+  },
+  nickname: String,
+  email: String,
+  reviews: [{type: Schema.Types.ObjectId, ref: 'Review'}]
+});
+var User = mongoose.model('User', userSchema);
+
+
+
+let ReviewsModel = mongoose.model('Review', schema);
+
+// var schema = mongoose.Schema({
+//   id: {
+//     type: Number,
+//     unique: true
+//   },
+//   name: String,
+//   rating_overall: Number,
+//   reviews: [
+//     {
+//       id: Number,
+//       title: String,
+//       text: String,
+//       doesRecommend: Boolean,
+//       created_At: Date,
+//       user: {
+//         id: number,
+//         nickname: String,
+//       }
+//     }
+//   ]
+// });
