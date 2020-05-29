@@ -31,11 +31,11 @@ const writeUser = () => {
 const writeReview = () => {
   const product = faker.random.number({
     'min': 1,
-    'max': 1000
+    'max': 1000000
   });
   const user = faker.random.number({
     'min': 1,
-    'max': 500
+    'max': 1000000
   });
   const title = faker.commerce.productAdjective();
   const text = faker.lorem.sentence();
@@ -74,11 +74,11 @@ const writeStreamReview = fs.createWriteStream('./NEWDB/Postgres/Data/reviews.tx
 // const line1 = 'Test\n';
 // writeStream.write(line1);
 
-writeNTimes(writeStreamProduct, 100000, writeProduct, ()=>{
+writeNTimes(writeStreamProduct, 1000000, writeProduct, ()=>{
   console.log('written!');
 });
 
-writeNTimes(writeStreamUser, 50000, writeUser, ()=>{
+writeNTimes(writeStreamUser, 1000000, writeUser, ()=>{
   console.log('written!');
 });
 
