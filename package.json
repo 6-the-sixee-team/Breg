@@ -17,7 +17,7 @@
     "test:coverage": "jest --coverage --colors",
     "build": "babel ./client/src/ --out-dir compiled --presets @babel/preset-react --source-maps inline --watch",
     "seed": "mysql -u root -p < schema.sql",
-    "seed2": "psql -U postgres < NEWDB/schema.sql",
+    "seed2": "psql -U postgres < NEWDB/Postgres/Data/postgreSQL_schema.sql",
     "build:docker": "./docker_build.sh"
   },
   "dependencies": {

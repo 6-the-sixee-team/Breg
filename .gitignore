@@ -42,3 +42,14 @@ bower_components
 # Dockerfile
 # docker-compose*
 postgres.sql
+<<<<<<< HEAD
+<<<<<<< HEAD
+products.txt
+users.txt
+reviews.txt
+mongoSchema.js
+test.sql
+=======
+>>>>>>> master
+=======
+>>>>>>> master
