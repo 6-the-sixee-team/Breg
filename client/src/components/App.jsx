@@ -98,20 +98,29 @@ class App extends React.Component {
     super(props);
     this.state = {
       reviews: sampledata,
-      productcode: '1'
+      productcode: '100100'
     };
     this.changeReviews = this.changeReviews.bind(this);
   }
 
   componentDidMount() {
-    // this.fetchReviews();
+    this.fetchReviews();
   }
 
   // HTTP Request Handlers
+  // fetchReviews() {
+  //   // // fetch(url)
+  //   // // .then(response => response.json())
+  //   let url = `/api/models/${this.state.productcode}/reviews`;
+  //   axios(url)
+  //     .then(response => response.data)
+  //     .then(reviewsData => this.changeReviews(reviewsData))
+  //     .catch(err => console.error(err));
+  // }
   fetchReviews() {
     // // fetch(url)
-    // // .then(response => response.json()) 
-    let url = `/api/models/${this.state.productcode}/reviews`;
+    // // .then(response => response.json())
+    let url = `/api/product/${this.state.productcode}/reviews`;
     axios(url)
       .then(response => response.data)
       .then(reviewsData => this.changeReviews(reviewsData))
