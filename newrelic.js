@@ -50,4 +50,4 @@ exports.config = {
       'response.headers.x*'
     ]
   }
-}
+};
