@@ -4,30 +4,30 @@ use adidas_fec;
 
 CREATE TABLE `Reviews` (
   `review_id` INTEGER AUTO_INCREMENT,
-  `product_id` INTEGER NOT NULL,
-  `user_id` INTEGER,
+  `product_id` SMALLINT NOT NULL,
+  `user_id` SMALLINT,
   `title` VARCHAR(255) NOT NULL,
   `text` MEDIUMTEXT NOT NULL,
   `doesRecommend` BOOLEAN NOT NULL,
   `created_At` DATETIME DEFAULT now(),
-  PRIMARY KEY (`review_id`),
+  PRIMARY KEY (review_id),
   FOREIGN KEY (user_id) REFERENCES Users (user_id),
   FOREIGN KEY (product_id) REFERENCES Products (product_id)
 );
 
 CREATE TABLE `Users` (
-  `users_id` INTEGER AUTO_INCREMENT,
+  `user_id` SMALLINT AUTO_INCREMENT,
   `nickname` VARCHAR(255),
   `email` VARCHAR(255),
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (user_id)
 );
 
 CREATE TABLE `Products` (
-  `products_id` INTEGER AUTO_INCREMENT,
+  `product_id` SMALLINT AUTO_INCREMENT,
   `name` VARCHAR(255),
   `description` VARCHAR(255),
-  `rating_overall` INTEGER NOT NULL,
-  PRIMARY KEY (`id`)
+  `rating_overall` DECIMAL NOT NULL,
+  PRIMARY KEY (product_id)
 );
 
 
