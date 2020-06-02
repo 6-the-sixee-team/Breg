@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const path = require('path');
 const cors = require('cors');
-const db = require('../NEWDB/dbindex.js');
+const db = require('../newdb/dbindex.js');
 
 
 // const middleware = require('./middleware.js');
