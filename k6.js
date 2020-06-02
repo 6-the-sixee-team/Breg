@@ -2,7 +2,8 @@ import http from 'k6/http';
 import {sleep} from 'k6';
 
 export default function() {
-  http.get('http://localhost:3003/api/product/400/reviews');
-  // http.get('http://localhost:3003/hi');
-  // sleep(0.09);
+  const id = Math.floor(Math.random()*1000001);
+  http.get(`http://localhost:3002/api/product/${id}/reviews`);
+  // http.get('http://localhost:3002/hi');
+  sleep(0.01);
 }

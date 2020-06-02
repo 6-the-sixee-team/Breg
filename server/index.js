@@ -1,17 +1,18 @@
 // server flow: index.js -> routes -> controller -> model -> db-mysql
+require('newrelic');
 const express = require('express');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const path = require('path');
 const cors = require('cors');
 const db = require('../NEWDB/dbindex.js');
-const nr = require('newrelic');
+
 
 // const middleware = require('./middleware.js');
 // const router = require('./routes.js');
 
 const app = express();
-const PORT = process.env.REVIEWSPORT || 3003;
+const PORT = process.env.REVIEWSPORT || 3002;
 app.set('port', PORT);
 
 // app.use(bodyParser.json());
@@ -24,23 +25,28 @@ app.use(cors());
 //   console.log('hello inside get route');
 //   res.send('response sent correctly!');
 // });
-app.get('/hi', (req, res) => {
-  res.send('hi');
+
+app.use((req, res, next) => {
+  console.log(`Incoming ${req.method} request to ${req.path}`);
+  console.log(req.body);
+  next();
 });
 
 app.get('/api/product/:id/reviews', (req, res) => {
-  // console.log(req.params.id);
+  // console.log('GET REQUEST');
   const queryStr = `SELECT reviews.created_At, reviews.rating, reviews.title, reviews.text, users.nickname FROM reviews, users WHERE reviews.product_id=${req.params.id} AND reviews.user_id = users.user_id ORDER BY reviews.created_At desc;`;
 
   db.query(queryStr, (err, result) => {
     if (err) {
-      res.send(`ERROR, ${err}`);
+      res.status(400).send(`ERROR, ${err}`);
     } else {
       let first2 = [result.rows[0], result.rows[1]];
-      res.send(first2);
+      res.status(200).send(first2);
     }
   });
 });
+
+
 
 // app.use('/api/models', router);
 
