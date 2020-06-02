@@ -47,18 +47,26 @@ const User = styled.div`
     margin: 10px 0 14px 0;
 `;
 
-const ReviewListEntry = (props) => (
-  <CollectionItem>
-    <Stars>★★★★★</Stars>
-    <Time>April 30, 2020</Time>
-    <Title>{props.review.title}</Title>
-    <Text>{props.review.text}</Text>
-    <Recommend>✓ I recommend this product</Recommend>
-    <DontRecommend>x I do not recommend this product</DontRecommend>
-    <User>{props.review.user_nickname}</User>
-    <div>Was this review helpful? Yes (0) No (0)</div>
-  </CollectionItem>
-);
+const ReviewListEntry = (props) => {
+
+  let stars = '';
+  for (let i = 0; i < props.review.rating; i++) {
+    stars += '★';
+  }
+
+  return (
+    <CollectionItem>
+      <Stars>{stars}</Stars>
+      <Time>April 30, 2020</Time>
+      <Title>{props.review.title}</Title>
+      <Text>{props.review.text}</Text>
+      <Recommend>✓ I recommend this product</Recommend>
+      <DontRecommend>x I do not recommend this product</DontRecommend>
+      <User>{props.review.nickname}</User>
+      <div>Was this review helpful? Yes (0) No (0)</div>
+    </CollectionItem>
+  );
+};
 
 export default ReviewListEntry;
 

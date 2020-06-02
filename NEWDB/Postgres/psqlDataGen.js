@@ -37,11 +37,15 @@ const writeReview = () => {
     'min': 1,
     'max': 1000000
   });
+  const rating = faker.random.number({
+    'min': 1,
+    'max': 5
+  });
   const title = faker.commerce.productAdjective();
   const text = faker.lorem.sentence();
   const doesRecommend = faker.random.boolean();
   const created = faker.date.between('2020-01-01', '2020-05-05').toString().replace(/G.+/g, 'PST');
-  const query = `${product}, ${user}, ${title}, ${text}, ${doesRecommend}, ${created}\n`;
+  const query = `${product}, ${user}, ${rating}, ${title}, ${text}, ${doesRecommend}, ${created}\n`;
   return query;
 };
 
